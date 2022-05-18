@@ -1,0 +1,15 @@
+<ng-container *ngIf="question">
+  <p>{{question.question}}</p>
+  <form [formGroup]="questionForm" (submit)="checkAnswer()">
+    <app-question
+      [type]="question.answerType"
+      [answers]="question.answers"
+      formControlName="answer"
+    ></app-question>
+    <div class="text-center">
+      <button class="btn btn-primary btn-lg" type="submit" [disabled]="questionForm.invalid">
+        Send
+      </button>
+    </div>
+  </form>
+</ng-container>

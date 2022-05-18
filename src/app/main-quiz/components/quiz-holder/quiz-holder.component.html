@@ -1,0 +1,15 @@
+<div class="font-sans">
+  <div class="relative min-h-screen flex flex-col sm:justify-center items-center">
+    <div class="relative sm:max-w-sm w-full">
+      <app-quiz-progress></app-quiz-progress>
+      <div class="card w-96 bg-base-100 shadow-xl" *ngIf="quiz">
+        <div class="card-body">
+          <h2 class="card-title">{{quiz.name}}</h2>
+          <h3 class="card-title text-xs">{{quiz.description}}</h3>
+          <app-quiz-question [question]="currentQuestion | async" (selectAnswer)="checkAnswer($event)"></app-quiz-question>
+        </div>
+      </div>
+      <p class="text-2xs"> Hello {{userName}}!</p>
+    </div>
+  </div>
+</div>

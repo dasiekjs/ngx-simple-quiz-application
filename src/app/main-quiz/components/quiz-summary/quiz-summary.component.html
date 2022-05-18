@@ -1,0 +1,24 @@
+<div class="font-sans">
+  <div class="relative min-h-screen flex flex-col sm:justify-center items-center">
+    <div class="relative sm:max-w-sm w-full">
+      <app-quiz-progress></app-quiz-progress>
+      <div class="card w-96 bg-base-100 shadow-xl" *ngIf="quiz && form">
+        <div class="m-4" [formGroup]="form">
+          <ng-container formArrayName="questions">
+            <ng-container *ngFor="let question of questions.controls; let i = index">
+              <div [formGroupName]="i">
+                <p>{{quiz.questions[i].question}}</p>
+                <app-question
+                  [summaryMode]="true"
+                  [answers]="quiz.questions[i].answers"
+                  formControlName="answer"
+                  [type]="quiz.questions[i].answerType"></app-question>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <p class="text-2xs"> Hello {{userName}}!</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<ng-container *ngIf="form" [formGroup]="form">
+  <ul class=" list-reset flex flex-col py-3">
+    <ng-container *ngIf="type == 'single'">
+      <li *ngFor="let answer of answers; let i = index">
+        <label class=" rounded-t relative -mb-px block border p-4 border-grey cursor-pointer"
+               [class.bg-green-300]="summaryMode && answer.isCorrect">
+          <input
+            type="radio"
+            class="accent-pink-500"
+            formControlName="answer"
+            value="{{answer.answer}}">
+          {{answer.answer}}
+        </label>
+      </li>
+    </ng-container>
+    <ng-container *ngIf="type == 'multiple'" formArrayName="answers">
+      <li *ngFor="let answer of formAnswers.controls; let i = index">
+        <label class=" rounded-t relative -mb-px block border p-4 border-grey cursor-pointer"
+               [class.bg-green-300]="summaryMode && answers && answers[i].isCorrect"
+          [formGroupName]="i">
+          <input
+            type="checkbox"
+            class="accent-pink-500"
+            formControlName="checked">
+          {{answers && answers[i].answer}}
+        </label>
+      </li>
+    </ng-container>
+  </ul>
+</ng-container>
